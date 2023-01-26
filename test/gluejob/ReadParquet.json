@@ -1,0 +1,35 @@
+{
+  "name" : "ReadParquet",
+  "description" : "",
+  "role" : "arn:aws:iam::336853738482:role/GlueJobRead",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-336853738482-us-west-1/scripts/ReadParquet.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--encryption-type" : "sse-s3",
+    "--enable-job-insights" : "false",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-336853738482-us-west-1/temporary/",
+    "--enable-glue-datacatalog" : "true",
+    "library-set" : "analytics"
+  },
+  "maxRetries" : 3,
+  "allocatedCapacity" : 10,
+  "timeout" : 2880,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "3.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "AWS",
+    "branch" : "code",
+    "folder" : "test/gluejob"
+  }
+}
